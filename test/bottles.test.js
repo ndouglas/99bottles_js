@@ -1,6 +1,6 @@
-import { BottleNumber, BottleVerse, Bottles } from '../lib/bottles';
+import { BottleVerse, CountdownSong } from '../lib/bottles';
 
-describe('Bottles', () => {
+describe('CountdownSong', () => {
 
   test('a couple verses', () => {
     const expected =
@@ -13,7 +13,7 @@ describe('Bottles', () => {
       '98 bottles of beer.\n' +
       'Take one down and pass it around, ' +
       '97 bottles of beer on the wall.\n';
-    expect(new Bottles().verses(99, 98)).toBe(expected);
+    expect(new CountdownSong().verses(99, 98)).toBe(expected);
   });
 
   test('a few verses', () => {
@@ -32,7 +32,7 @@ describe('Bottles', () => {
       'no more bottles of beer.\n' +
       'Go to the store and buy some more, ' +
       '99 bottles of beer on the wall.\n';
-    expect(new Bottles().verses(2, 0)).toBe(expected);
+    expect(new CountdownSong().verses(2, 0)).toBe(expected);
   });
 
   test('the whole song', () => {
@@ -337,7 +337,7 @@ Take it down and pass it around, no more bottles of beer on the wall.
 No more bottles of beer on the wall, no more bottles of beer.
 Go to the store and buy some more, 99 bottles of beer on the wall.
 `;
-    expect(new Bottles().song()).toBe(expected);
+    expect(new CountdownSong().song()).toBe(expected);
   });
 });
 

@@ -1,38 +1,26 @@
 import { BottleVerse, CountdownSong } from '../lib/bottles';
 
+class VerseFake {
+  static lyrics(number) {
+    return `This is verse ${number}\n`;
+  }
+}
+
 describe('CountdownSong', () => {
 
-  test('a couple verses', () => {
-    const expected =
-      '99 bottles of beer on the wall, ' +
-      '99 bottles of beer.\n' +
-      'Take one down and pass it around, ' +
-      '98 bottles of beer on the wall.\n' +
-      '\n' +
-      '98 bottles of beer on the wall, ' +
-      '98 bottles of beer.\n' +
-      'Take one down and pass it around, ' +
-      '97 bottles of beer on the wall.\n';
-    expect(new CountdownSong().verses(99, 98)).toBe(expected);
+  test('verse', () => {
+    const expected = 'This is verse 500\n';
+    expect(new CountdownSong(VerseFake).verse(500)).toBe(expected);
   });
 
-  test('a few verses', () => {
+  test('verses', () => {
     const expected =
-      '2 bottles of beer on the wall, ' +
-      '2 bottles of beer.\n' +
-      'Take one down and pass it around, ' +
-      '1 bottle of beer on the wall.\n' +
+      'This is verse 99\n' +
       '\n' +
-      '1 bottle of beer on the wall, ' +
-      '1 bottle of beer.\n' +
-      'Take it down and pass it around, ' +
-      'no more bottles of beer on the wall.\n' +
+      'This is verse 98\n' +
       '\n' +
-      'No more bottles of beer on the wall, ' +
-      'no more bottles of beer.\n' +
-      'Go to the store and buy some more, ' +
-      '99 bottles of beer on the wall.\n';
-    expect(new CountdownSong().verses(2, 0)).toBe(expected);
+      'This is verse 97\n';
+    expect(new CountdownSong(VerseFake).verses(99, 97)).toBe(expected);
   });
 
   test('the whole song', () => {
@@ -337,7 +325,7 @@ Take it down and pass it around, no more bottles of beer on the wall.
 No more bottles of beer on the wall, no more bottles of beer.
 Go to the store and buy some more, 99 bottles of beer on the wall.
 `;
-    expect(new CountdownSong().song()).toBe(expected);
+    expect(new CountdownSong(BottleVerse, 99, 0).song()).toBe(expected);
   });
 });
 
